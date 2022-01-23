@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ListsScreenComponent} from "./lists-screen/lists-screen.component";
 
 const routes: Routes = [
-  { path: 'heroes', component: ListsScreenComponent }
+  { path: 'lists', component: ListsScreenComponent }
 ];
 
 @NgModule({

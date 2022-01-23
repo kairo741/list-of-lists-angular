@@ -1,3 +1,33 @@
-<mat-toolbar>
+<mat-toolbar color="primary" class="pe-0 app-toolbar">
   <span>Seja bem vindo</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="me-2">
+    <mat-icon>cloud_upload</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>add</mat-icon>
+  </button>
 </mat-toolbar>
+
+<div class="container-fluid">
+
+  <div class="list-content p-3 pe-0" *ngFor="let lista of listList">
+    <div class="list-icon-bg">
+      <mat-icon class="list-icon">{{lista.icon}}</mat-icon>
+    </div>
+
+    <div class="ps-5 fw-bold">
+      {{lista.name}}
+    </div>
+
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon color="primary">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon color="primary">delete_forever</mat-icon>
+    </button>
+
+  </div>
+
+</div>

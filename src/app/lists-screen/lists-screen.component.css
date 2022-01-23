@@ -1,0 +1,28 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+/*########################## Toolbar ########################*/
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+/*########################## List Content ########################*/
+.list-content {
+  display: flex;
+  align-items: center;
+}
+
+.list-icon {
+  transform: scale(1.5);
+  margin: 10px;
+}
+
+.list-icon-bg {
+  background: #F0F1F5FF;
+  border-radius: 100%;
+}
+
