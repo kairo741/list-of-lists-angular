@@ -8,8 +8,8 @@ import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.c
 const routes: Routes = [
   {path: 'lists', component: ListsScreenComponent},
   {path: 'edit-list/:id', component: EditListComponent},
-  {path: 'edit-item/:id', component: EditItemComponent},
-  {path: 'new-item', component: EditItemComponent},
+  {path: 'edit-item/:idList/:idItem', component: EditItemComponent},
+  {path: 'edit-item/:idList', component: EditItemComponent},
   {path: 'list/:id', component: ItemsListComponent},
   {path: 'item/:id', component: EditListComponent}
 ];

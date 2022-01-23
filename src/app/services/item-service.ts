@@ -9,8 +9,8 @@ const ITEM_KEY = "_ik"
 })
 export class ItemService {
 
-  public getItem(id: number): any {
-    let items = window.sessionStorage.getItem(ITEM_KEY);
+  public getItem(id: number, idLista: number): any {
+    let items = window.sessionStorage.getItem(idLista + ITEM_KEY);
     if (items) {
       let list = JSON.parse(items) as Item[];
       return list.find(value => value.id == id)
@@ -18,12 +18,17 @@ export class ItemService {
     return null;
   }
 
-  public getAllItems(): any {
-    return window.sessionStorage.getItem(ITEM_KEY);
+  public getAllItemsByLista(listaId: number): any {
+    let items = window.sessionStorage.getItem(listaId + ITEM_KEY);
+    if (items) {
+      return JSON.parse(items) as Item[];
+    }
+    return [];
   }
 
-  public saveItem(item: any): void {
-    let items = window.sessionStorage.getItem(ITEM_KEY);
+  public saveItem(item: any, listaId: number): void {
+    let key = listaId + ITEM_KEY;
+    let items = window.sessionStorage.getItem(key);
 
     if (items) {
       let list = JSON.parse(items) as Item[];
@@ -37,17 +42,17 @@ export class ItemService {
         }
 
         list.push(item);
-        window.sessionStorage.removeItem(ITEM_KEY);
-        window.sessionStorage.setItem(ITEM_KEY, JSON.stringify(list));
+        window.sessionStorage.removeItem(key);
+        window.sessionStorage.setItem(key, JSON.stringify(list));
         return;
       }
     }
     item.id = 0;
-    window.sessionStorage.setItem(ITEM_KEY, JSON.stringify([item]));
+    window.sessionStorage.setItem(key, JSON.stringify([item]));
     return;
   }
 
-  public deleteItem(id: number): void {
+  public deleteItem(id: number, listaId: number): void {
     let items = window.sessionStorage.getItem(ITEM_KEY);
 
     if (items) {
@@ -59,7 +64,6 @@ export class ItemService {
         return;
       }
     }
-
     window.sessionStorage.removeItem(ITEM_KEY);
     return;
   }

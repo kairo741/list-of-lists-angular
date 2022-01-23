@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
 import {Item} from "../../../model/item";
+import {ItemService} from "../../../services/item-service";
 
 @Component({
   selector: 'app-edit-list',
@@ -15,41 +15,55 @@ export class EditItemComponent implements OnInit {
   item?: Item;
 
   id?: number;
+  idLista?: number;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private dialog: MatDialog,
+              private service: ItemService,
   ) {
-    this.setupForm();
   }
 
   setupForm() {
-    // todo - pegar o valor certo para a comparação
     this.form = this.fb.group({
-      name: [null, [this.differentValueValidator(this.item?.name)]],
+      name: [this.item?.name, [this.differentValueValidator(this.item?.name)]],
     });
   }
 
   save() {
+    let newItem: Item = {
+      id: this.id,
+      name: this.form.value.name,
+      status: "A",
+      createDate: new Date()
+    }
+    this.service.saveItem(newItem, this.idLista!);
+    this.back();
   }
 
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {
-      let param = params['id'];
+      this.idLista = parseInt(params['idList']);
+      let param = params['idItem'];
       if (param != null) {
-        this.id = parseInt(params['id']);
+        this.id = parseInt(params['idItem']);
       } else {
         this.id = undefined;
       }
     });
 
+    if (this.id != null) {
+      this.item = this.service.getItem(this.id, this.idLista!)
+    }
+
+    this.setupForm();
+
   }
 
 
   back() {
-    this.router.navigate(['/list/' + this.item?.idList]);
+    this.router.navigate(['/list/' + this.idLista]);
   }
 
   differentValueValidator(value?: string): ValidatorFn {

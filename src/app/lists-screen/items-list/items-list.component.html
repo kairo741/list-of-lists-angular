@@ -2,7 +2,7 @@
   <button mat-icon-button class="me-2" (click)="back()">
     <mat-icon>arrow_back</mat-icon>
   </button>
-  <span class="text-truncate">COLOCAR PRA RECEBER NOME DA LISTA</span>
+  <span class="text-truncate">{{lista?.name!}}</span>
   <span class="spacer"></span>
   <button mat-icon-button (click)="addItem()">
     <mat-icon>add</mat-icon>

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Item} from "../../model/item";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lista} from "../../model/lista";
+import {ItemService} from "../../services/item-service";
+import {ListaService} from "../../services/lista-service";
 
 @Component({
   selector: 'app-items-list',
@@ -11,11 +13,11 @@ import {Lista} from "../../model/lista";
 export class ItemsListComponent implements OnInit {
 
   itemsList: Item[] = []
-
-  id?: number;
+  idLista?: number;
   lista?: Lista;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private service: ItemService, private listaService: ListaService) {
     for (let i = 0; i < 4; i++) {
       let itemTeste: Item = {
         id: i,
@@ -29,15 +31,21 @@ export class ItemsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.id = parseInt(params['id']);
+      this.idLista = parseInt(params['id']);
     });
+
+    this.lista = this.listaService.getLista(this.idLista!);
+
+    this.itemsList = this.service.getAllItemsByLista(this.idLista!);
+
   }
 
   addItem() {
+    this.router.navigate(['/edit-item/' + this.idLista]);
   }
 
   edit(id: number) {
-    this.router.navigate(['/edit-item/' + id]);
+    this.router.navigate(['/edit-item/' + this.idLista + "/" + id]);
   }
 
   back() {
