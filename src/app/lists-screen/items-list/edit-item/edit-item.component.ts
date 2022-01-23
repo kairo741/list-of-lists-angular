@@ -3,6 +3,9 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn} 
 import {ActivatedRoute, Router} from "@angular/router";
 import {Item} from "../../../model/item";
 import {ItemService} from "../../../services/item-service";
+import {DialogDeleteComponent} from "../../../dialogs/dialog.delete.component";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogEditPhotoComponent} from "./dialog-edit-photo/dialog-edit-photo.component";
 
 @Component({
   selector: 'app-edit-list',
@@ -13,6 +16,7 @@ export class EditItemComponent implements OnInit {
   form!: FormGroup;
   icon?: string;
   item?: Item;
+  urlPhoto?: string;
 
   id?: number;
   idLista?: number;
@@ -21,6 +25,7 @@ export class EditItemComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private service: ItemService,
+              private dialog: MatDialog
   ) {
   }
 
@@ -34,6 +39,7 @@ export class EditItemComponent implements OnInit {
     let newItem: Item = {
       id: this.id,
       name: this.form.value.name,
+      urlPhoto: this.urlPhoto,
       status: "A",
       createDate: new Date()
     }
@@ -55,12 +61,40 @@ export class EditItemComponent implements OnInit {
 
     if (this.id != null) {
       this.item = this.service.getItem(this.id, this.idLista!)
+      this.urlPhoto = this.item?.urlPhoto;
     }
 
     this.setupForm();
 
   }
 
+  addPhoto() {
+    const dialogRef = this.dialog.open(DialogEditPhotoComponent, {
+      width: '500px', disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(value => {
+      if (value && value != "") {
+        this.urlPhoto = value
+      }
+    });
+
+  }
+
+  delete() {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '500px', disableClose: true, data: {
+        title: "Tem certeza? ",
+        message: "Essa ação excluirá o item \"" + this.item?.name + "\"",
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.service.deleteItem(this.id!, this.idLista!);
+        this.back();
+      }
+    });
+  }
 
   back() {
     this.router.navigate(['/list/' + this.idLista]);

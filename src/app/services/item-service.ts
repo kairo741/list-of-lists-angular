@@ -53,18 +53,19 @@ export class ItemService {
   }
 
   public deleteItem(id: number, listaId: number): void {
-    let items = window.sessionStorage.getItem(ITEM_KEY);
+    let key = listaId + ITEM_KEY;
+    let items = window.sessionStorage.getItem(key);
 
     if (items) {
       let list = JSON.parse(items) as Item[];
       if (list.length > 0) {
         list.splice(list.findIndex(value => value.id == id), 1)
-        window.sessionStorage.removeItem(ITEM_KEY);
-        window.sessionStorage.setItem(ITEM_KEY, JSON.stringify(list));
+        window.sessionStorage.removeItem(key);
+        window.sessionStorage.setItem(key, JSON.stringify(list));
         return;
       }
     }
-    window.sessionStorage.removeItem(ITEM_KEY);
+    window.sessionStorage.removeItem(key);
     return;
   }
 

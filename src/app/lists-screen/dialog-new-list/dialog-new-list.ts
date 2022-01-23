@@ -26,24 +26,18 @@ export class DialogNewList {
 
   save() {
     if (this.form.valid) {
-
-      // todo - id e idUser
       let lista: Lista = {
         name: this.form.value.name,
         icon: "list_alt",
         status: "A",
         createDate: new Date()
       }
-
-      // todo - salvar no storage
       this.dialogRef.close(lista);
-
     } else {
       this.snackBar.open("Erro ao inserir lista", "OK", {
         duration: 6000,
       });
     }
-
   }
 
 

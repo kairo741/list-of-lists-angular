@@ -10,9 +10,16 @@
   <!--  <div class="container-fluid">-->
 
   <div class="icon-container d-flex justify-content-center">
-    <div class="list-icon-bg">
-      <button type="button" mat-icon-button class="list-icon">
-        <mat-icon>{{icon != null ? icon : 'report_problem'}}</mat-icon>
+    <div *ngIf="urlPhoto == null" class="list-icon-bg">
+      <button type="button" mat-icon-button class="list-icon" (click)="addPhoto()">
+        <mat-icon *ngIf="urlPhoto == null">image</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="urlPhoto != null" >
+      <button type="button" mat-icon-button class="list-icon w-auto pt-0 m-0" (click)="addPhoto()">
+        <div  class="photo"
+             [style.backgroundImage]="'url('+ urlPhoto +')'">
+        </div>
       </button>
     </div>
   </div>
@@ -37,6 +44,11 @@
     <span class="ms-2">{{id != undefined ? 'Alterar' : 'Salvar'}}</span>
   </button>
 
+  <button [hidden]="id == null" type="button" class="field-width border mt-2"
+          mat-button color="primary" (click)="delete()">
+    <span class="ms-2">Excluir</span>
+    <mat-icon [style.color]="'red'">delete</mat-icon>
+  </button>
 
   <!--  </div>-->
 </form>

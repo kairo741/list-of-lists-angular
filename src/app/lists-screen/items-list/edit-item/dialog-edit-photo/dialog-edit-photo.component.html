@@ -1,0 +1,22 @@
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
+
+  <mat-dialog-content>
+    <mat-form-field class="field-width" appearance="outline" floatLabel="always">
+      <mat-label>Url da foto</mat-label>
+      <input matInput #input maxlength="200"
+             formControlName="url"
+             name="url"
+             aria-label='Url da foto'>
+      <mat-error [hidden]="valid">Url Inválida</mat-error>
+    </mat-form-field>
+    <div [hidden]="valid" [style.color]="'red'" class="fw-bold">Url Inválida</div>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" [style.color]="'white'" mat-dialog-close>Cancelar</button>
+      <button type="submit" mat-raised-button color="primary" [style.color]="'white'">Adicionar</button>
+    </div>
+  </mat-dialog-content>
+
+</form>
+
+

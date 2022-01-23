@@ -13,6 +13,10 @@ import {DialogEditIcon} from "./lists-screen/edit-list/dialog-edit-icon/dialog-e
 import {DialogDeleteComponent} from "./dialogs/dialog.delete.component";
 import { ItemsListComponent } from './lists-screen/items-list/items-list.component';
 import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.component";
+import {
+  DialogEditPhotoComponent
+} from "./lists-screen/items-list/edit-item/dialog-edit-photo/dialog-edit-photo.component";
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.c
     EditItemComponent,
     DialogEditIcon,
     DialogDeleteComponent,
-    ItemsListComponent
+    ItemsListComponent,
+    DialogEditPhotoComponent
   ],
   imports: [
     BrowserModule,

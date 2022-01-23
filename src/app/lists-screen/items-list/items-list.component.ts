@@ -18,15 +18,6 @@ export class ItemsListComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private service: ItemService, private listaService: ListaService) {
-    for (let i = 0; i < 4; i++) {
-      let itemTeste: Item = {
-        id: i,
-        // icon: "edit",
-        name: "Item " + i,
-      }
-      this.itemsList.push(itemTeste)
-    }
-
   }
 
   ngOnInit(): void {

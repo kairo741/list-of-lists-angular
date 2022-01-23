@@ -29,7 +29,14 @@
   border-radius: 100%;
 }
 
-/*########################## Input Content ########################*/
-/*.icon-input-container{*/
-/*  display: flex;*/
-/*}*/
+/*########################## Photo ########################*/
+.photo{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
