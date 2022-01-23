@@ -10,6 +10,7 @@ import {DialogNewList} from "./lists-screen/dialog-new-list/dialog-new-list";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {EditListComponent} from './lists-screen/edit-list/edit-list.component';
 import {DialogEditIcon} from "./lists-screen/edit-list/dialog-edit-icon/dialog-edit-icon";
+import {DialogDeleteComponent} from "./dialogs/dialog.delete.component";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {DialogEditIcon} from "./lists-screen/edit-list/dialog-edit-icon/dialog-e
     DialogNewList,
     EditListComponent,
     DialogEditIcon,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {Lista} from "../model/lista";
 import {DialogNewList} from "./dialog-new-list/dialog-new-list";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {DialogDeleteComponent} from "../dialogs/dialog.delete.component";
 
 @Component({
   selector: 'app-lists-screen',
@@ -29,6 +30,25 @@ export class ListsScreenComponent implements OnInit {
 
   edit(id: number) {
     this.router.navigate(['/edit/' + id]);
+  }
+
+  delete(id: number) {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '500px', disableClose: true, data: {
+        title: "Tem certeza? ",
+        message: "Essa ação excluirá a lista \"" + this.getListaById(id)?.name! + "\"",
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.listaList.splice(this.listaList.findIndex(value => value.id == id), 1)
+      }
+    });
+  }
+
+  getListaById(id: number): Lista | undefined {
+    return this.listaList.find(value => value.id == id);
   }
 
   addLista() {
