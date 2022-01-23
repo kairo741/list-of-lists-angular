@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Nova Lista</h1>
+
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Nome da Lista</mat-label>
+      <input matInput #input maxlength="200"
+             formControlName="name"
+             name="name"
+             aria-label='Nome da nova lista'>
+      <mat-error>Nome inválido</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" [style.color]="'white'" mat-dialog-close>Cancelar</button>
+      <button type="submit" mat-raised-button color="primary" [style.color]="'white'">Criar</button>
+    </div>
+  </mat-dialog-content>
+
+</form>
+
+
