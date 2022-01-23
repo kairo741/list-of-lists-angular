@@ -2,7 +2,7 @@
   <button mat-icon-button class="me-4" (click)="back()">
     <mat-icon>arrow_back</mat-icon>
   </button>
-  <span>Editar Lista</span>
+  <span>Editar Item</span>
 </mat-toolbar>
 
 
@@ -11,7 +11,7 @@
 
   <div class="icon-container d-flex justify-content-center">
     <div class="list-icon-bg">
-      <button type="button" mat-icon-button class="list-icon" (click)="editIcon()">
+      <button type="button" mat-icon-button class="list-icon">
         <mat-icon>{{icon != null ? icon : 'report_problem'}}</mat-icon>
       </button>
     </div>
@@ -19,8 +19,8 @@
 
 
   <mat-form-field class="field-width" appearance="outline" floatLabel="always">
-    <mat-icon color="primary" class="me-2" matPrefix>edit</mat-icon>
-    <mat-label>Nome da Lista</mat-label>
+    <mat-icon color="primary" matPrefix>edit</mat-icon>
+    <mat-label>Nome do item</mat-label>
     <input matInput #input maxlength="200"
            formControlName="name"
            name="name"
@@ -29,19 +29,12 @@
     <mat-error>Nome inválido</mat-error>
   </mat-form-field>
 
-  <mat-form-field class="field-width" appearance="outline" floatLabel="always">
-    <mat-icon color="primary" class="me-2" matPrefix>date_range</mat-icon>
-    <mat-label>Data de Criação</mat-label>
-    <input matInput #input maxlength="200"
-           formControlName="createdDate"
-           name="createdDate">
-  </mat-form-field>
   <br>
 
   <button type="submit" class="field-width" mat-raised-button color="primary"
           [style.color]="'white'" [disabled]="!form.valid">
     <mat-icon>send</mat-icon>
-    <span class="ms-2">Salvar</span>
+    <span class="ms-2">{{id != undefined ? 'Alterar' : 'Salvar'}}</span>
   </button>
 
 

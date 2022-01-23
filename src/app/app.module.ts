@@ -12,6 +12,7 @@ import {EditListComponent} from './lists-screen/edit-list/edit-list.component';
 import {DialogEditIcon} from "./lists-screen/edit-list/dialog-edit-icon/dialog-edit-icon";
 import {DialogDeleteComponent} from "./dialogs/dialog.delete.component";
 import { ItemsListComponent } from './lists-screen/items-list/items-list.component';
+import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ItemsListComponent } from './lists-screen/items-list/items-list.compone
     ListsScreenComponent,
     DialogNewList,
     EditListComponent,
+    EditItemComponent,
     DialogEditIcon,
     DialogDeleteComponent,
     ItemsListComponent

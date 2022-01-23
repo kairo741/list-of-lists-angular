@@ -4,6 +4,7 @@ import {DialogNewList} from "./dialog-new-list/dialog-new-list";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {DialogDeleteComponent} from "../dialogs/dialog.delete.component";
+import {ListaService} from "../services/lista-service";
 
 @Component({
   selector: 'app-lists-screen',
@@ -14,22 +15,18 @@ export class ListsScreenComponent implements OnInit {
 
   listaList: Lista[] = []
 
-  constructor(private dialog: MatDialog, private router: Router) {
+  constructor(private dialog: MatDialog, private router: Router, private service: ListaService) {
   }
 
   ngOnInit(): void {
-    for (let i = 0; i < 4; i++) {
-      let listaTeste: Lista = {
-        id: i,
-        icon: "edit",
-        name: "Lista " + i,
-      }
-      this.listaList.push(listaTeste)
+    let listas = this.service.getAllListas();
+    if (listas) {
+      this.listaList = listas;
     }
   }
 
   edit(id: number) {
-    this.router.navigate(['/edit/' + id]);
+    this.router.navigate(['/edit-list/' + id]);
   }
 
   delete(id: number) {
@@ -42,7 +39,8 @@ export class ListsScreenComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(value => {
       if (value) {
-        this.listaList.splice(this.listaList.findIndex(value => value.id == id), 1)
+        this.service.deleteLista(id);
+        this.listaList = this.service.getAllListas();
       }
     });
   }
@@ -51,7 +49,7 @@ export class ListsScreenComponent implements OnInit {
     return this.listaList.find(value => value.id == id);
   }
 
-  goToItems(id: number){
+  goToItems(id: number) {
     this.router.navigate(['/list/' + id]);
   }
 
@@ -62,7 +60,8 @@ export class ListsScreenComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (lista: Lista) => {
         if (lista != null && lista != "") {
-          this.listaList.push(lista)
+          this.service.saveLista(lista);
+          this.listaList = this.service.getAllListas();
         }
       });
   }

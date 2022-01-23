@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
 
-  <div class="list-content pt-3 pb-3 pe-0 ps-1" *ngFor="let item of itemsList" (mousedown)="goToDetails()">
+  <div class="list-content pt-3 pb-3 pe-0 ps-1" *ngFor="let item of itemsList" (mousedown)="edit(item.id!)">
     <div class="photo"
          [style.backgroundImage]="'url('+ 'https://storage.googleapis.com/prod-images-interfit/b3885b89-76de-4632-9d83-ef775f66abbe/profile/b3885b89-76de-4632-9d83-ef775f66abbe_profile.png' +')'">
     </div>

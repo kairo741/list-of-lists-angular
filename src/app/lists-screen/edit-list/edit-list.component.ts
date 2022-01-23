@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogEditIcon} from "./dialog-edit-icon/dialog-edit-icon";
+import {Lista} from "../../model/lista";
+import {ListaService} from "../../services/lista-service";
 
 @Component({
   selector: 'app-edit-list',
@@ -12,26 +14,31 @@ import {DialogEditIcon} from "./dialog-edit-icon/dialog-edit-icon";
 export class EditListComponent implements OnInit {
   form!: FormGroup;
   icon?: string;
+  lista?: Lista;
+  id?: number;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private dialog: MatDialog,
+              private service: ListaService,
+              private activatedRoute: ActivatedRoute
   ) {
-    this.setupForm();
   }
 
   setupForm() {
-    // todo - pegar o valor certo para a comparação
     this.form = this.fb.group({
-      name: [null, [this.differentValueValidator("!")]],
+      name: [this.lista!.name!, [this.differentValueValidator(this.lista!.name!)]],
       createdDate: [{value: new Date().toLocaleString(), disabled: true}, [Validators.required]],
     });
   }
 
-  save() {
-  }
-
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = parseInt(params['id']);
+    });
+
+    this.lista = this.service.getLista(this.id!);
+    this.setupForm();
   }
 
   editIcon() {
@@ -48,6 +55,14 @@ export class EditListComponent implements OnInit {
 
   back() {
     this.router.navigate(['/lists']);
+  }
+
+  save() {
+    if (this.form?.valid!) {
+      this.lista!.name = this.form.value.name;
+      this.service.saveLista(this.lista);
+      this.back();
+    }
   }
 
   differentValueValidator(value?: string): ValidatorFn {
