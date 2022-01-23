@@ -17,7 +17,7 @@ export class ItemsListComponent implements OnInit {
       let itemTeste: Item = {
         id: i,
         // icon: "edit",
-        name: "Lista " + i,
+        name: "Item " + i,
       }
       this.itemsList.push(itemTeste)
     }
@@ -31,8 +31,8 @@ export class ItemsListComponent implements OnInit {
   }
 
   goToDetails() {
+    console.log("teste mousedown")
   }
-
   back() {
     this.router.navigate(['/lists']);
   }
