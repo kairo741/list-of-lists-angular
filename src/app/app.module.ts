@@ -16,6 +16,8 @@ import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.c
 import {
   DialogEditPhotoComponent
 } from "./lists-screen/items-list/edit-item/dialog-edit-photo/dialog-edit-photo.component";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -37,6 +39,12 @@ import {
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

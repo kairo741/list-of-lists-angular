@@ -6,6 +6,7 @@ import {ItemsListComponent} from "./lists-screen/items-list/items-list.component
 import {EditItemComponent} from "./lists-screen/items-list/edit-item/edit-item.component";
 
 const routes: Routes = [
+  {path: '', redirectTo: '/lists', pathMatch: 'full'},
   {path: 'lists', component: ListsScreenComponent},
   {path: 'edit-list/:id', component: EditListComponent},
   {path: 'edit-item/:idList/:idItem', component: EditItemComponent},
