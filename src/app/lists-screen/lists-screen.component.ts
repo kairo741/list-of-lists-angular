@@ -51,6 +51,10 @@ export class ListsScreenComponent implements OnInit {
     return this.listaList.find(value => value.id == id);
   }
 
+  goToItems(id: number){
+    this.router.navigate(['/list/' + id]);
+  }
+
   addLista() {
     const dialogRef = this.dialog.open(DialogNewList, {
       width: '500px', disableClose: true,

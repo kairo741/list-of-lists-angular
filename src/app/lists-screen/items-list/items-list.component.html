@@ -1,0 +1,25 @@
+<mat-toolbar [style.color]="'white'" color="primary" class="ps-1 pe-0 app-toolbar">
+  <button mat-icon-button class="me-2" (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span class="text-truncate">COLOCAR PRA RECEBER NOME DA LISTA</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="addItem()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container-fluid">
+
+  <div class="list-content p-3 pe-0" *ngFor="let item of itemsList" (click)="goToDetails()">
+    <div class="list-icon-bg">
+      <mat-icon class="list-icon">arrow</mat-icon>
+    </div>
+
+    <div class="ps-5 fw-bold">
+      {{item.name}}
+    </div>
+
+  </div>
+
+</div>

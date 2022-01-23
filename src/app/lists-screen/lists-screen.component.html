@@ -12,15 +12,17 @@
 <div class="container-fluid">
 
   <div class="list-content p-3 pe-0" *ngFor="let lista of listaList">
-    <div class="list-icon-bg">
-      <mat-icon class="list-icon">{{lista.icon}}</mat-icon>
-    </div>
+    <div class="list-content" (click)="goToItems(lista.id!)">
+      <div class="list-icon-bg">
+        <mat-icon class="list-icon">{{lista.icon}}</mat-icon>
+      </div>
 
-    <div class="ps-5 fw-bold">
-      {{lista.name}}
+      <div class="ps-5 fw-bold">
+        {{lista.name}}
+      </div>
     </div>
-
     <span class="spacer"></span>
+
     <button mat-icon-button (click)="edit(lista.id!)">
       <mat-icon color="primary">edit</mat-icon>
     </button>
