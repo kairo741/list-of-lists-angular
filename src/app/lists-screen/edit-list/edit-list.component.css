@@ -1,0 +1,35 @@
+
+.field-width{
+  width: 80%;
+}
+
+
+/*########################## Toolbar ########################*/
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+
+/*########################## Edit Content ########################*/
+.list-icon {
+  transform: scale(1.9);
+  margin: 10px;
+}
+.icon-container{
+  padding-top: 25%;
+  padding-bottom: 25%;
+}
+
+.list-icon-bg {
+  transform: scale(3);
+  background: #F0F1F5FF;
+  border-radius: 100%;
+}
+
+/*########################## Input Content ########################*/
+/*.icon-input-container{*/
+/*  display: flex;*/
+/*}*/
