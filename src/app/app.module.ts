@@ -8,14 +8,16 @@ import {AppRoutingModule} from "./app-routing.module";
 import {AppMaterialModule} from "./app-material/app-material.module";
 import {DialogNewList} from "./lists-screen/dialog-new-list/dialog-new-list";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { EditListComponent } from './lists-screen/edit-list/edit-list.component';
+import {EditListComponent} from './lists-screen/edit-list/edit-list.component';
+import {DialogEditIcon} from "./lists-screen/edit-list/dialog-edit-icon/dialog-edit-icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     ListsScreenComponent,
     DialogNewList,
-    EditListComponent
+    EditListComponent,
+    DialogEditIcon,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+.title {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.list-icon {
+  transform: scale(1.5);
+  margin: 10px;
+}
+
+.list-icon-bg {
+  background: #F0F1F5FF;
+  border-radius: 100%;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-items: center;
+  justify-content: space-evenly;
+  row-gap: 10px;
+}

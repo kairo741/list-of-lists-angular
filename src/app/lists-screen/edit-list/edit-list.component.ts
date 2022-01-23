@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {Lista} from "../../model/lista";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogEditIcon} from "./dialog-edit-icon/dialog-edit-icon";
 
 @Component({
   selector: 'app-edit-list',
@@ -11,9 +11,12 @@ import {Router} from "@angular/router";
 })
 export class EditListComponent implements OnInit {
   form!: FormGroup;
+  icon?: string;
 
   constructor(private fb: FormBuilder,
-              private router: Router,) {
+              private router: Router,
+              private dialog: MatDialog,
+  ) {
     this.setupForm();
   }
 
@@ -29,6 +32,18 @@ export class EditListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  editIcon() {
+    const dialogRef = this.dialog.open(DialogEditIcon, {
+      width: '500px', disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe(
+      (icon: string) => {
+        if (icon != null && icon != "") {
+          this.icon = icon;
+        }
+      });
   }
 
   back() {
