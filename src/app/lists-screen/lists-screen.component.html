@@ -1,7 +1,7 @@
 <mat-toolbar [style.color]="'white'" color="primary" class="pe-0 app-toolbar">
   <span>Seja bem vindo</span>
   <span class="spacer"></span>
-  <button mat-icon-button class="me-2">
+  <button mat-icon-button class="me-2" (click)="sendToFirestore()">
     <mat-icon>cloud_upload</mat-icon>
   </button>
   <button mat-icon-button (click)="addLista()">
